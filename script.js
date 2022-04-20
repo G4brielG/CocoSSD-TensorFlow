@@ -42,11 +42,18 @@ function predecir() {
         model.detect(img).then(predictions => {
             // realiza un mapeo del array "predictions"
             //por cada elemento encontrado crea un elemento html para mostrar cada predicción
-            predictions.map((item) => {
+            if(predictions.lenght > 0) {
+                predictions.map((item) => {
+                    const result = document.createElement("h3")
+                    result.textContent = item.class
+                    salida.appendChild(result);
+                });
+            } else {
                 const result = document.createElement("h3")
-                result.textContent = item.class
+                result.textContent = 'No se encontraron resultados...'
                 salida.appendChild(result);
-            });
+            }
+            
         });
     });
 }
